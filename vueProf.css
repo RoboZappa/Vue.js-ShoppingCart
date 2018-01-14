@@ -1,0 +1,70 @@
+/* Developer: Jordan Gilmore
+Project:   Vue Shopping Cart */
+
+/* Custom nav  */
+
+
+a {
+    text-decoration: none;
+    color: black;
+}
+  
+ul li {
+    list-style-type: none;
+}
+
+/* End Custom nav  */
+
+hr {
+    color: black;
+    background-color: bisque;
+    margin: 0;
+}
+body{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: bisque;
+}
+
+#cardDiv{
+    background-color: rgb(51, 10, 3);
+    margin: 5em auto;
+    padding: 5em;
+    border-radius: 0.5em;
+    width: 100%;
+}
+.card{
+    width: 220px;
+    text-align: center;
+    margin: auto;
+    color: black;
+    border-radius: 0.5em;
+}
+/* Centering card img */
+.card-img-top{
+    display: block;
+    margin: 0.5em auto 0 auto;
+    border-radius: 1em;
+    box-shadow: 0.5em 0.5em rgba(0, 0, 0, 0.85)
+}
+#cartDiv{
+    background-color: rgb(51, 10, 3);
+    margin: 5em auto;
+    padding: 5em;
+    border-radius: 0.5em;
+    width: 100%;
+}
+
+#cart{
+    background-color: white;
+    color: black;
+    margin-bottom: 0em;
+    padding: 2em;
+}
+#subTotal{
+    background-color: white;
+    color: black;
+    margin-top: 0em;
+    padding: 2em;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+    <head>
+        <!-- Developer: Jordan Gilmore
+        Project:   Vue Shopping Cart -->
+        <title>Coffee Cart</title>
+        <script src="https://unpkg.com/vue"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="vueProf.css">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-light bg-light">
+                <a class="nav-link" href="https://github.com/RoboZappa" target="_blank">My GitHub</a>
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="gallery.html">Art Gallery</a>
+                <a class="nav-link" href="cart.html">Vue.js Example</a>
+                <a class="nav-link active" href="vueProf.html">Coffee Cart</a>
+            </nav>
+        </header>
+        <div id="app">
+            <!-- *Replace all cards with Vue.Components -->
+            <!-- Cards Row -->
+            <div class="row" id="cardDiv">
+                <!-- Card 1 | items[0] -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img class="card-img-top" v-bind:src="items[0].imgSrc" style="width:120px;height:120px;">
+                        <div class="card-body">
+                            <h3 class="card-title">{{items[0].name}}</h3>
+                            <h4>Price: ${{items[0].price}}</h4>
+                            <h4>Stock: <span class="badge badge-pill badge-dark">{{items[0].qty}}</span></h4>
+                            <p>Boldly going where no coffee has gone before.
+                            </p>
+                            <button type="button" class="btn btn-primary" v-if="items[0].qty > 0" v-on:click="orderItem(items[0])">Order</button>
+                            <button type="button" class="btn btn-danger" v-if="items[0].ordered > 0" v-on:click="removeItem(items[0])">Remove 1</button>
+                        </div><!-- Card body div-->
+                    </div><!-- Card div -->
+                </div><!-- Div card 1  -->
+
+                <!-- Card 2 | items[1] -->
+                <div class="col-md-4">
+                    <div class="card" >
+                        <img class="card-img-top" v-bind:src=items[1].imgSrc style="width:120px;height:120px;">
+                        <div class="card-body">
+                            <h3 class="card-title">{{items[1].name}}</h3>
+                            <h4>Price: ${{items[1].price}}</h4>
+                            <h4>Stock: <span class="badge badge-pill badge-dark">{{items[1].qty}}</span></h4>
+                            <p>Stylish? Sexy? Brown? You're welcome.</p>
+                            <button type="button" class="btn btn-primary"  v-if="items[1].qty > 0" v-on:click="orderItem(items[1])">Order</button>
+                            <button type="button" class="btn btn-danger"v-if="items[1].ordered > 0" v-on:click="removeItem(items[1])">Remove 1</button>
+                        </div><!-- Card body div-->
+                    </div><!-- Card div -->
+                </div><!-- Div card 2  -->
+
+                <!-- Card 3 | items[2] -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img class="card-img-top" v-bind:src=items[2].imgSrc style="width:120px;height:120px;">
+                        <div class="card-body">
+                            <h3 class="card-title">{{items[2].name}}</h3>
+                            <h4>Price: ${{items[2].price}}</h4>
+                            <h4>Stock: <span class="badge badge-pill badge-dark">{{items[2].qty}}</span></h4>
+                            <p>Triumphant and full heck-yeah! 
+                                Just the punch thats needed.
+                            </p>
+                            <button type="button" class="btn btn-primary" v-if="items[2].qty > 0" v-on:click="orderItem(items[2])">Order</button>
+                            <button type="button" class="btn btn-danger" v-if="items[2].ordered > 0" v-on:click="removeItem(items[2])">Remove 1</button>
+                        </div><!-- Card body div-->
+                    </div><!-- Card div -->
+                </div><!-- Div card 3  -->
+            </div> <!-- End of Card Row -->
+            <hr>
+            <!-- Cart -->
+            <div class="jumbotron text-center" id="cartDiv" >
+                <table class="table align-content-center" id="cart"> 
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Item Price</th>
+                        <th>Number Order</th>
+                        <th>Item Subtotal</th>
+                        <th>Remove Item</th>
+                    </tr>
+                    <tr v-for="item in items" v-if="item.ordered > 0">
+                        <td>{{item.name}}</td>
+                        <td>{{item.price}}</td>
+                        <td>{{item.ordered}}</td> 
+                        <td>{{(item.price * item.ordered).toFixed(2)}}</td>
+                        <td><button type="button" class="btn btn-danger" v-on:click="deleteItem(item)" v-if="item.ordered > 0">Delete Item</button></td>
+                    </tr>
+                </table>
+                <hr>                
+                <!-- Final Receipt -->
+                <div id="subTotal" v-if="cartQty > 0">
+                    <h2 v-if="cartQty > 0">Cart: {{cartQty}}</h2>
+                    <h2>SubTotal: ${{subTotal.toFixed(2)}}</h2>
+                    <h2>Tax: ${{tax}}</h2>
+                    <h2>Total: ${{final}}</h2> 
+                </div>
+            </div> <!-- jumbotron closing For Cart & Receipt -->
+        </div> <!-- End #App Div -->
+        <script src="vueProf.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    </body>
+</html>
